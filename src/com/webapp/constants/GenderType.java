@@ -3,7 +3,7 @@ package com.webapp.constants;
 public class GenderType {
     private GenderType() {}
 
-    private static final int MALE = 1;
-    private static final int FEMALE = 2;
-    private static final int TRANSGENDER = 3;
+    public static final int MALE = 1;
+    public static final int FEMALE = 2;
+    public static final int TRANSGENDER = 3;
 }

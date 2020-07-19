@@ -19,7 +19,11 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3592ea03-e41c-4e05-9995-837d8ea5f0d5" name="Default Changelist" comment="" />
+    <list default="true" id="3592ea03-e41c-4e05-9995-837d8ea5f0d5" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/webapp/constants/GenderType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/webapp/constants/GenderType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/webapp/managers/BookmarkManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/webapp/managers/BookmarkManager.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -72,6 +76,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="249" y="0" key="#Project_Structure" timestamp="1595174442071">

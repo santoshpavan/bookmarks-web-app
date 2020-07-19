@@ -18,7 +18,6 @@ public class BookmarkManager {
 
     public Movie createMovie(long id,
                              String title,
-                             String profileUrl,
                              int releaseYear,
                              String[] cast,
                              String[] directors,
@@ -27,7 +26,6 @@ public class BookmarkManager {
         Movie movie = new Movie();
         movie.setId(id);
         movie.setTitle(title);
-        movie.setProfileUrl(profileUrl);
         movie.setReleaseYear(releaseYear);
         movie.setCast(cast);
         movie.setDirectors(directors);
@@ -39,7 +37,6 @@ public class BookmarkManager {
 
     public Book createBook(long id,
                            String title,
-                           String profileUrl,
                            int publicationYear,
                            String publisher,
                            String[] authors,
@@ -48,7 +45,6 @@ public class BookmarkManager {
         Book book = new Book();
         book.setId(id);
         book.setTitle(title);
-        book.setProfileUrl(profileUrl);
         book.setPublicationYear(publicationYear);
         book.setPublisher(publisher);
         book.setAuthors(authors);
@@ -60,13 +56,11 @@ public class BookmarkManager {
 
     public WebLink createWebLink(long id,
                                  String title,
-                                 String profileUrl,
                                  String url,
                                  String host) {
         WebLink webLink = new WebLink();
         webLink.setId(id);
         webLink.setTitle(title);
-        webLink.setProfileUrl(profileUrl);
         webLink.setUrl(url);
         webLink.setHost(host);
 

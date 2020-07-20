@@ -1,12 +1,16 @@
 package com.webapp.managers;
 
+import com.webapp.dao.BookmarkDao;
 import com.webapp.entities.Book;
+import com.webapp.entities.Bookmark;
 import com.webapp.entities.Movie;
 import com.webapp.entities.WebLink;
 
 // Singleton pattern
 public class BookmarkManager {
     private static BookmarkManager bookmarkManagerInstance = new BookmarkManager();
+    // MVC Policy => Manager/Model communicating with DAO
+    private static BookmarkDao bookmarkDao = new BookmarkDao();
 
     // private constructor
     private BookmarkManager() {
@@ -16,13 +20,8 @@ public class BookmarkManager {
         return bookmarkManagerInstance;
     }
 
-    public Movie createMovie(long id,
-                             String title,
-                             int releaseYear,
-                             String[] cast,
-                             String[] directors,
-                             String genre,
-                             double imdbRating) {
+    public Movie createMovie(long id, String title, int releaseYear, String[] cast,
+                             String[] directors, String genre, double imdbRating) {
         Movie movie = new Movie();
         movie.setId(id);
         movie.setTitle(title);
@@ -35,13 +34,8 @@ public class BookmarkManager {
         return movie;
     }
 
-    public Book createBook(long id,
-                           String title,
-                           int publicationYear,
-                           String publisher,
-                           String[] authors,
-                           String genre,
-                           double amazonRating) {
+    public Book createBook(long id, String title, int publicationYear, String publisher,
+                           String[] authors, String genre, double amazonRating) {
         Book book = new Book();
         book.setId(id);
         book.setTitle(title);
@@ -54,10 +48,7 @@ public class BookmarkManager {
         return book;
     }
 
-    public WebLink createWebLink(long id,
-                                 String title,
-                                 String url,
-                                 String host) {
+    public WebLink createWebLink(long id, String title, String url, String host) {
         WebLink webLink = new WebLink();
         webLink.setId(id);
         webLink.setTitle(title);
@@ -65,5 +56,9 @@ public class BookmarkManager {
         webLink.setHost(host);
 
         return webLink;
+    }
+
+    public Bookmark[][] getBookmarks() {
+        return bookmarkDao.getBookMarks();
     }
 }

@@ -1,11 +1,14 @@
 package com.webapp.managers;
 
+import com.webapp.dao.UserDao;
 import com.webapp.entities.User;
 
 // Singleton Pattern
 public class UserManager {
     // static as getter is static
     private static UserManager userManagerInstance = new UserManager();
+    // MVC policy => Manager/Model communicating with DAO
+    private static UserDao userDao = new UserDao();
 
     // private constructor for Singleton
     private UserManager() {
@@ -32,5 +35,9 @@ public class UserManager {
         user.setUserType(userType);
 
         return user;
+    }
+
+    public User[] getUsers() {
+        return userDao.getUsers();
     }
 }

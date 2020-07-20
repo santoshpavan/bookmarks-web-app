@@ -13,12 +13,14 @@ import com.webapp.managers.UserManager;
 public class DataStore {
     public static final int TOTAL_USER_COUNT = 5;
     public static final int BOOKMARK_COUNT_PER_TYPE = 5;
-    public static final int BOOKMARK_TYPES_COUNT = 5;
+    public static final int BOOKMARK_TYPES_COUNT = 3;
     public static final int USER_BOOKMARK_LIMIT = 5;
 
     private static User[] users = new User[TOTAL_USER_COUNT];
     private static Bookmark[][] bookmarks = new Bookmark[BOOKMARK_TYPES_COUNT][BOOKMARK_COUNT_PER_TYPE];
     private static UserBookmark[] userBookmarks = new UserBookmark[TOTAL_USER_COUNT * USER_BOOKMARK_LIMIT];
+
+    private static int bookmarkIndex = -1;
 
     public static void loadData() {
         loadUsers();
@@ -65,5 +67,9 @@ public class DataStore {
 
     public static Bookmark[][] getBookmarks() {
         return bookmarks;
+    }
+
+    public static void add(UserBookmark userBookmark) {
+        userBookmarks[++bookmarkIndex] = userBookmark;
     }
 }

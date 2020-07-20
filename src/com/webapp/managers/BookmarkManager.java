@@ -1,10 +1,7 @@
 package com.webapp.managers;
 
 import com.webapp.dao.BookmarkDao;
-import com.webapp.entities.Book;
-import com.webapp.entities.Bookmark;
-import com.webapp.entities.Movie;
-import com.webapp.entities.WebLink;
+import com.webapp.entities.*;
 
 // Singleton pattern
 public class BookmarkManager {
@@ -60,5 +57,13 @@ public class BookmarkManager {
 
     public Bookmark[][] getBookmarks() {
         return bookmarkDao.getBookMarks();
+    }
+
+    public void saveUserBookMark(User user, Bookmark bookmark) {
+        UserBookmark userBookmark = new UserBookmark();
+        userBookmark.setUser(user);
+        userBookmark.setBookmark(bookmark);
+
+        bookmarkDao.saveUserBookmark(userBookmark);
     }
 }

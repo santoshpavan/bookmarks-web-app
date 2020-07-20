@@ -1,0 +1,20 @@
+package com.webapp.controllers;
+
+import com.webapp.entities.Bookmark;
+import com.webapp.entities.User;
+import com.webapp.managers.BookmarkManager;
+
+// Singleton
+public class BookmarkController {
+    private static BookmarkController bookmarkControllerInstance = new BookmarkController();
+
+    private BookmarkController() {}
+
+    public static BookmarkController getInstance() {
+        return bookmarkControllerInstance;
+    }
+
+    public void saveUserBookmark(User user, Bookmark bookmark) {
+        BookmarkManager.getInstance().saveUserBookMark(user, bookmark);
+    }
+}

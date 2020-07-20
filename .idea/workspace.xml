@@ -21,10 +21,10 @@
   <component name="ChangeListManager">
     <list default="true" id="3592ea03-e41c-4e05-9995-837d8ea5f0d5" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/webapp/entities/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/webapp/entities/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/webapp/entities/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/webapp/entities/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/webapp/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/webapp/entities/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/webapp/entities/WebLink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/webapp/entities/WebLink.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/webapp/DataStore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/webapp/DataStore.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/webapp/Launch.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/webapp/Launch.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/webapp/dao/BookmarkDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/webapp/dao/BookmarkDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/webapp/managers/BookmarkManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/webapp/managers/BookmarkManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,5 +113,21 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="944" y="131" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1595209569755" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1595210037159">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1595210037159" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1595210037159">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1595210037159" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1595210037159">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1595210037159" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1595210037159">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1595210037159" />
   </component>
 </project>

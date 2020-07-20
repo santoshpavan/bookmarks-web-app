@@ -58,4 +58,12 @@ public class DataStore {
         bookmarks[2][3] = BookmarkManager.getInstance().createBook(4003, "Head First Design Patterns",2004, "O'Reilly Media", new String[]	{"Eric Freeman", "Bert Bates", "Kathy Sierra", "Elisabeth Robson"}, BookGenreType.TECHNICAL,4.5);
         bookmarks[2][4] = BookmarkManager.getInstance().createBook(4004, "Effective Java Programming Language Guide",2007,"Prentice Hall", new String[] {"Joshua Bloch"}, BookGenreType.TECHNICAL, 4.9);
     }
+
+    public static User[] getUsers() {
+        return users;
+    }
+
+    public static Bookmark[][] getBookmarks() {
+        return bookmarks;
+    }
 }

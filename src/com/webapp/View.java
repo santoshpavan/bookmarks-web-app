@@ -5,6 +5,7 @@ import com.webapp.constants.UserType;
 import com.webapp.controllers.BookmarkController;
 import com.webapp.entities.Bookmark;
 import com.webapp.entities.User;
+import com.webapp.partner.Shareable;
 
 public class View {
 
@@ -28,13 +29,23 @@ public class View {
                         String kidFriendlyStatus = getKidFriendlyStatusDecision(bookmark);
 
                         if (!kidFriendlyStatus.equals(KidFriendlyStatus.UNKNOWN)) {
-                            bookmark.setKidFriendlyStatus(kidFriendlyStatus);
-                            System.out.println("Kid friendly status: " + kidFriendlyStatus + ", " + bookmark);
+                            BookmarkController.getInstance().setKidFriendlyStatus(user, kidFriendlyStatus, bookmark);
                         }
+                    }
+                }
+
+                // Sharing
+                if (bookmark.getKidFriendlyStatus().equals(KidFriendlyStatus.APPROVED) && bookmark instanceof Shareable) {
+                    if (getShareDecision()) {
+                        BookmarkController.getInstance().share(user, bookmark);
                     }
                 }
             }
         }
+    }
+
+    private static boolean getShareDecision() {
+        return Math.random() < 0.5 ? true : false;
     }
 
     private static boolean getBookmarkDecision(Bookmark bookmark) {
@@ -46,19 +57,4 @@ public class View {
                 KidFriendlyStatus.APPROVED : (Math.random() >= 0.4 && Math.random() < 0.8) ?
                     KidFriendlyStatus.REJECTED : KidFriendlyStatus.UNKNOWN;
     }
-
-//    public static void bookmark(User user, Bookmark[][] bookmarks) {
-//        System.out.println("\n" + user.getEmail() + " is bookmarking.");
-//        for (int i = 0; i < DataStore.USER_BOOKMARK_LIMIT; i++) {
-//            // random selection of bookmark for a user
-//            int typeOffset = (int)(Math.random() * DataStore.BOOKMARK_TYPES_COUNT);
-//            int bookmarkOffset = (int)(Math.random() * DataStore.BOOKMARK_COUNT_PER_TYPE);
-//
-//            Bookmark bookmark = bookmarks[typeOffset][bookmarkOffset];
-//
-//            BookmarkController.getInstance().saveUserBookmark(user, bookmark);
-//
-//            System.out.println(bookmark);
-//        }
-//    }
 }

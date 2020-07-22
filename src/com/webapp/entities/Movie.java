@@ -1,5 +1,7 @@
 package com.webapp.entities;
 
+import com.webapp.constants.MovieGenreType;
+
 import java.util.Arrays;
 
 public class Movie extends Bookmark {
@@ -58,5 +60,14 @@ public class Movie extends Bookmark {
                 ", genre='" + genre + '\'' +
                 ", imdbRating=" + imdbRating +
                 '}';
+    }
+
+    @Override
+    public boolean isKidFriendlyEligible() {
+        if (getGenre().equals(MovieGenreType.HORROR) || getGenre().equals(MovieGenreType.THRILLERS) || getGenre().equals(MovieGenreType.FOREGIN_THRILLERS)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }

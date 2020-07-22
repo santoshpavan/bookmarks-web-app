@@ -1,5 +1,7 @@
 package com.webapp.entities;
 
+import com.webapp.constants.BookGenreType;
+
 import java.util.Arrays;
 
 public class Book extends Bookmark{
@@ -58,5 +60,14 @@ public class Book extends Bookmark{
                 ", genre='" + genre + '\'' +
                 ", amazonRating=" + amazonRating +
                 '}';
+    }
+
+    @Override
+    public boolean isKidFriendlyEligible() {
+        if (getGenre().equals(BookGenreType.SELF_HELP) || getGenre().equals(BookGenreType.PHILOSOPHY)){
+            return false;
+        } else {
+            return true;
+        }
     }
 }

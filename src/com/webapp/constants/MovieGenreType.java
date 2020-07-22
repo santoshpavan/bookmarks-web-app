@@ -17,7 +17,7 @@ public class MovieGenreType {
     public static final String INDEPENDENT = "Independent";
     public static final String SPORTS_AND_FITNESS = "Sports & Fitness";
     public static final String ANIME_AND_ANIMATION = "Anime & Animation";
-    public static final String GAY_AND_LESBIAN = "Gay & Lesbian";
+    public static final String LGBTQ = "LGBTQ";
     public static final String CLASSIC_MOVIE_MUSICALS = "Classic Movie Musicals";
     public static final String FAITH_AND_SPIRITUALITY = "Faith & Spirituality";
     public static final String FOREIGN_DRAMAS = "Foreign Dramas";

@@ -1,10 +1,16 @@
 package com.webapp.constants;
 
-public class UserType {
-    // no instances => Private constructor
-    private UserType() {}
+public enum UserType {
+    USER("user"),
+    EDITOR("editor"),
+    CHIEF_EDITOR("chiefeditor");
 
-    public static final String USER = "user";
-    public static final String EDITOR = "editor";
-    public static final String CHIEF_EDITOR = "chiefeditor";
+    String userType;
+    private UserType(String type) {
+        this.userType = type;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
 }

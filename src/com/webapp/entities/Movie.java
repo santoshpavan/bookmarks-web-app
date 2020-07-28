@@ -8,7 +8,7 @@ public class Movie extends Bookmark {
     private int releaseYear;
     private String[] cast;
     private String[] directors;
-    private String genre;
+    private MovieGenreType genre;
     private double imdbRating;
 
     public int getReleaseYear() {
@@ -35,11 +35,11 @@ public class Movie extends Bookmark {
         this.directors = directors;
     }
 
-    public String getGenre() {
+    public MovieGenreType getGenre() {
         return genre;
     }
 
-    public void setGenre(String genre) {
+    public void setGenre(MovieGenreType genre) {
         this.genre = genre;
     }
 

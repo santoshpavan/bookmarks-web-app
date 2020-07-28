@@ -1,5 +1,7 @@
 package com.webapp.managers;
 
+import com.webapp.constants.GenderType;
+import com.webapp.constants.UserType;
 import com.webapp.dao.UserDao;
 import com.webapp.entities.User;
 
@@ -26,8 +28,8 @@ public class UserManager {
                            String password,
                            String firstName,
                            String lastName,
-                           int gender,
-                           String userType) {
+                           GenderType gender,
+                           UserType userType) {
         User user = new User();
         user.setId(id);
         user.setEmail(email);

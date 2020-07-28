@@ -1,13 +1,16 @@
 package com.webapp.entities;
 
+import com.webapp.constants.GenderType;
+import com.webapp.constants.UserType;
+
 public class User {
     private long id;
     private String email;
     private String password;
     private String firstName;
     private String lastName;
-    private int gender;
-    private String userType;
+    private GenderType gender;
+    private UserType userType;
 
     public long getId() {
         return id;
@@ -49,19 +52,19 @@ public class User {
         this.lastName = lastName;
     }
 
-    public int getGender() {
+    public GenderType getGender() {
         return gender;
     }
 
-    public void setGender(int gender) {
+    public void setGender(GenderType gender) {
         this.gender = gender;
     }
 
-    public String getUserType() {
+    public UserType getUserType() {
         return userType;
     }
 
-    public void setUserType(String userType) {
+    public void setUserType(UserType userType) {
         this.userType = userType;
     }
 

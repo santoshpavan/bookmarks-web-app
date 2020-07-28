@@ -1,5 +1,8 @@
 package com.webapp.managers;
 
+import com.webapp.constants.BookGenreType;
+import com.webapp.constants.KidFriendlyStatus;
+import com.webapp.constants.MovieGenreType;
 import com.webapp.dao.BookmarkDao;
 import com.webapp.entities.*;
 import com.webapp.util.HttpConnect;
@@ -24,7 +27,7 @@ public class BookmarkManager {
     }
 
     public Movie createMovie(long id, String title, int releaseYear, String[] cast,
-                             String[] directors, String genre, double imdbRating) {
+                             String[] directors, MovieGenreType genre, double imdbRating) {
         Movie movie = new Movie();
         movie.setId(id);
         movie.setTitle(title);
@@ -38,7 +41,7 @@ public class BookmarkManager {
     }
 
     public Book createBook(long id, String title, int publicationYear, String publisher,
-                           String[] authors, String genre, double amazonRating) {
+                           String[] authors, BookGenreType genre, double amazonRating) {
         Book book = new Book();
         book.setId(id);
         book.setTitle(title);
@@ -89,7 +92,7 @@ public class BookmarkManager {
         bookmarkDao.saveUserBookmark(userBookmark);
     }
 
-    public void setKidFriendlyStatus(User user, String kidFriendlyStatus, Bookmark bookmark) {
+    public void setKidFriendlyStatus(User user, KidFriendlyStatus kidFriendlyStatus, Bookmark bookmark) {
         bookmark.setKidFriendlyStatus(kidFriendlyStatus);
         bookmark.setKidFriendlyMarkedBy(user);
         System.out.println("Kid friendly status: " + kidFriendlyStatus + ", marked by " + user.getEmail() + " -> " + bookmark);

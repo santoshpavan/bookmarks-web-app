@@ -1,9 +1,16 @@
 package com.webapp.constants;
 
-public class KidFriendlyStatus {
-    public static final String UNKNOWN = "Unknown";
-    public static final String APPROVED = "Approved";
-    public static final String REJECTED = "Rejected";
+public enum KidFriendlyStatus {
+    UNKNOWN("Unknown"),
+    APPROVED("Approved"),
+    REJECTED("Rejected");
 
-    private void kidFriendlyStatus() {} //private constructor as no instances
+    String friendlyStatus;
+    private KidFriendlyStatus (String status) {
+        this.friendlyStatus = status;
+    }
+
+    public String getFriendlyStatus() {
+        return friendlyStatus;
+    }
 }

@@ -1,16 +1,23 @@
 package com.webapp.constants;
 
-public class BookGenreType {
-    private BookGenreType() {}
+public enum BookGenreType {
+    ART("Art"),
+    BIOGRAPHY("Biography"),
+    CHILDREN("Children"),
+    FICTION("Fiction"),
+    HISTORY("History"),
+    MYSTERY("Mystery"),
+    PHILOSOPHY("Philosophy"),
+    RELIGION("Religion"),
+    SELF_HELP("Self Help"),
+    TECHNICAL("Technical");
 
-    public static final String ART = "Art";
-    public static final String BIOGRAPHY = "Biography";
-    public static final String CHILDREN = "Children";
-    public static final String FICTION = "Fiction";
-    public static final String HISTORY = "History";
-    public static final String MYSTERY = "Mystery";
-    public static final String PHILOSOPHY = "Philosophy";
-    public static final String RELIGION = "Religion";
-    public static final String SELF_HELP = "Self Help";
-    public static final String TECHNICAL = "Technical";
+    private String typeName;
+    private BookGenreType(String name) {
+        this.typeName = name;
+    }
+
+    public String getString() {
+        return typeName;
+    }
 }

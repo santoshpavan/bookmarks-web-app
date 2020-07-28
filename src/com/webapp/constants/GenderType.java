@@ -1,9 +1,17 @@
 package com.webapp.constants;
 
-public class GenderType {
-    private GenderType() {}
+public enum GenderType {
+    MALE(1),
+    FEMALE(2),
+    TRANSGENDER(3);
 
-    public static final int MALE = 1;
-    public static final int FEMALE = 2;
-    public static final int TRANSGENDER = 3;
+    int genderType;
+    private GenderType(int gender) {
+        this.genderType = gender;
+    }
+
+    public int getGenderType() {
+        return genderType;
+    }
+
 }

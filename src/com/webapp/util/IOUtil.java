@@ -4,7 +4,7 @@ import java.io.*;
 
 public class IOUtil {
 
-    public static void read(String[] data, String filename) {
+    public static void read(String[] data, String filename) { //reading from a file
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"))) {
             String line;
             int count = 0;
@@ -22,7 +22,7 @@ public class IOUtil {
         }
     }
 
-    public static String read(InputStream inputStream) {
+    public static String read(InputStream inputStream) {//reading from a webpage - to cache weblinks
         StringBuilder text = new StringBuilder();
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"))) {

@@ -5,9 +5,11 @@ import com.webapp.entities.User;
 import com.webapp.managers.BookmarkManager;
 import com.webapp.managers.UserManager;
 
+import java.util.List;
+
 public class Launch {
-    private static User[] users;
-    private static Bookmark[][] bookmarks;
+    private static List<User> users;
+    private static List<List<Bookmark>> bookmarks;
 
     public static void loadData() {
         System.out.println("Loading data...");
@@ -15,10 +17,6 @@ public class Launch {
 
         users = UserManager.getInstance().getUsers();
         bookmarks = BookmarkManager.getInstance().getBookmarks();
-
-//        System.out.println("Printing data...");
-//        printUserData();
-//        printBookmarkData();
     }
 
     public static void printUserData() {
@@ -28,7 +26,7 @@ public class Launch {
     }
 
     public static void printBookmarkData() {
-        for(Bookmark[] bookmarksList: bookmarks) {
+        for(List<Bookmark> bookmarksList: bookmarks) {
             for(Bookmark bookmark: bookmarksList) {
                 System.out.println(bookmark);
             }

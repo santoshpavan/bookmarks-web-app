@@ -7,6 +7,7 @@ import com.webapp.util.IOUtil;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.util.List;
 
 // Singleton pattern
 public class BookmarkManager {
@@ -60,7 +61,7 @@ public class BookmarkManager {
         return webLink;
     }
 
-    public Bookmark[][] getBookmarks() {
+    public List<List<Bookmark>> getBookmarks() {
         return bookmarkDao.getBookMarks();
     }
 

@@ -7,20 +7,18 @@ import com.webapp.entities.Bookmark;
 import com.webapp.entities.User;
 import com.webapp.partner.Shareable;
 
+import java.util.List;
+
 public class View {
 
-    public static void browse(User user, Bookmark[][] bookmarks) {
+    public static void browse(User user, List<List<Bookmark>> bookmarks) {
         System.out.println("\n" + user.getEmail() + " is browsing.");
-        int bookmarkCount = 0;
 
-        for (Bookmark[] bookmarkList: bookmarks) {
+        for (List<Bookmark> bookmarkList: bookmarks) {
             for (Bookmark bookmark: bookmarkList) {
-                if (bookmarkCount < DataStore.USER_BOOKMARK_LIMIT) {
-                    if (getBookmarkDecision(bookmark)){
-                        BookmarkController.getInstance().saveUserBookmark(user, bookmark);
-                        bookmarkCount++;
-                        System.out.println("New item Bookmarked --" + bookmark);
-                    }
+                if (getBookmarkDecision(bookmark)) {
+                    BookmarkController.getInstance().saveUserBookmark(user, bookmark);
+                    System.out.println("New item Bookmarked --" + bookmark);
                 }
 
                 // Marking as kid-friendly

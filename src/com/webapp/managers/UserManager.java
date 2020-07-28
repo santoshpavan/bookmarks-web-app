@@ -3,6 +3,8 @@ package com.webapp.managers;
 import com.webapp.dao.UserDao;
 import com.webapp.entities.User;
 
+import java.util.List;
+
 // Singleton Pattern
 public class UserManager {
     // static as getter is static
@@ -37,7 +39,7 @@ public class UserManager {
         return user;
     }
 
-    public User[] getUsers() {
+    public List<User> getUsers() {
         return userDao.getUsers();
     }
 }

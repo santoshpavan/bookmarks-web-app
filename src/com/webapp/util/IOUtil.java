@@ -1,17 +1,16 @@
 package com.webapp.util;
 
 import java.io.*;
+import java.util.List;
 
 public class IOUtil {
 
-    public static void read(String[] data, String filename) { //reading from a file
+    public static void read(List<String> data, String filename) { //reading from a file
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(filename), "UTF-8"))) {
             String line;
-            int count = 0;
             // if it is null then we are done
             while ((line = bufferedReader.readLine()) != null) {
-                data[count] = line;
-                count++;
+                data.add(line);
             }
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

@@ -5,6 +5,15 @@ import com.webapp.partner.Shareable;
 public class WebLink extends Bookmark implements Shareable {
     private String url;
     private String host;
+    private String htmlPage;
+    private DownloadStatus downloadStatus = DownloadStatus.NOT_ATTEMPTED;
+
+    public enum DownloadStatus {
+        NOT_ATTEMPTED,
+        SUCCESS,
+        FAILED,
+        NOT_ELIGIBLE; //not eligible to download like a pdf doc
+    }
 
     public String getUrl() {
         return url;
@@ -51,4 +60,21 @@ public class WebLink extends Bookmark implements Shareable {
 
         return builder.toString();
     }
+
+    public String getHtmlPage() {
+        return htmlPage;
+    }
+
+    public void setHtmlPage(String htmlPage) {
+        this.htmlPage = htmlPage;
+    }
+
+    public DownloadStatus getDownloadStatus() {
+        return downloadStatus;
+    }
+
+    public void setDownloadStatus(DownloadStatus downloadStatus) {
+        this.downloadStatus = downloadStatus;
+    }
+
 }

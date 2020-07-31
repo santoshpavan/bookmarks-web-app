@@ -1,5 +1,6 @@
 package com.webapp;
 
+import com.webapp.backgroundjobs.WebpageDownloaderTask;
 import com.webapp.entities.Bookmark;
 import com.webapp.entities.User;
 import com.webapp.managers.BookmarkManager;
@@ -43,5 +44,13 @@ public class Launch {
     public static void main(String[] args) {
         loadData();
         start();
+
+        // background jobs
+        runDownloaderJob();
+    }
+
+    private static void runDownloaderJob() {
+        WebpageDownloaderTask task = new WebpageDownloaderTask(true);
+        (new Thread(task)).start();
     }
 }

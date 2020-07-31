@@ -21,9 +21,9 @@ public class DataStore {
 
     public static void loadData() {
         loadUsers();
-        loadWebLinks();
-        loadMovies();
-        loadBooks();
+        loadWebLinks(); //index 0
+        loadMovies(); //index 1
+        loadBooks(); //index 2
     }
 
     private static void loadUsers() {

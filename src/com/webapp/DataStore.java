@@ -11,6 +11,10 @@ import com.webapp.managers.BookmarkManager;
 import com.webapp.managers.UserManager;
 import com.webapp.util.IOUtil;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +24,32 @@ public class DataStore {
     private static List<UserBookmark> userBookmarks = new ArrayList<>();
 
     public static void loadData() {
+        /*
         loadUsers();
         loadWebLinks(); //index 0
         loadMovies(); //index 1
         loadBooks(); //index 2
+         */
+
+        // loading JDBC driver
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        // connect to the database
+        // Connection and Statement are interfaces
+        // connection string syntax: <protocol>:<sub-protocol>:<data-source details>
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_bookmarks?useSSL=false", "root", "root");
+        Statement statement = connection.createStatement();) {
+            loadUsers(statement);
+            loadWebLinks(statement);
+            loadMovies(statement);
+            loadBooks(statement);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     private static void loadUsers() {

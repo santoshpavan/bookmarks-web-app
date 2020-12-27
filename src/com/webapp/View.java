@@ -42,11 +42,11 @@ public class View {
     }
 
     private static boolean getShareDecision() {
-        return Math.random() < 0.5 ? true : false;
+        return Math.random() < 0.5;
     }
 
     private static boolean getBookmarkDecision(Bookmark bookmark) {
-        return Math.random() < 0.5 ? true : false;
+        return Math.random() < 0.5;
     }
 
     private static KidFriendlyStatus getKidFriendlyStatusDecision(Bookmark bookmark) {

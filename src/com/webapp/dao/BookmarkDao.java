@@ -83,4 +83,26 @@ public class BookmarkDao {
 
         return result;
     }
+
+    public void updateKidFriendlyStatus(Bookmark bookmark) {
+        int kidFriendlyStatus = bookmark.getKidFriendlyStatus().ordinal();
+        long user_id = bookmark.getKidFriendlyMarkedBy().getId();
+
+        String tableToUpdate = "Book";
+        if (bookmark instanceof Movie) {
+            tableToUpdate = "Movie";
+        } else if (bookmark instanceof WebLink) {
+            tableToUpdate = "WebLink";
+        }
+
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=false", "root", "477905");
+             Statement statement = connection.createStatement();) {
+
+            String query = "update" + tableToUpdate + " set kid_friendly_status = " + kidFriendlyStatus + "kid_friendly_marked_by = " + user_id + " where id = " + bookmark.getId();
+            System.out.println("query (updateKidFriendlyStatus): " + query);
+            statement.executeUpdate(query);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
 }

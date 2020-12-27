@@ -96,6 +96,9 @@ public class BookmarkManager {
     public void setKidFriendlyStatus(User user, KidFriendlyStatus kidFriendlyStatus, Bookmark bookmark) {
         bookmark.setKidFriendlyStatus(kidFriendlyStatus);
         bookmark.setKidFriendlyMarkedBy(user);
+        // update the data
+        bookmarkDao.updateKidFriendlyStatus(bookmark);
+
         System.out.println("Kid friendly status: " + kidFriendlyStatus + ", marked by " + user.getEmail() + " -> " + bookmark);
     }
 

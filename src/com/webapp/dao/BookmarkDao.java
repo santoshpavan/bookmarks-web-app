@@ -1,10 +1,12 @@
 package com.webapp.dao;
 
 import com.webapp.DataStore;
-import com.webapp.entities.Bookmark;
-import com.webapp.entities.UserBookmark;
-import com.webapp.entities.WebLink;
+import com.webapp.entities.*;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,7 +18,42 @@ public class BookmarkDao {
 
     public void saveUserBookmark(UserBookmark userBookmark) {
         // adding to the DB
-        DataStore.add(userBookmark);
+        // connect to the database
+        // Connection and Statement are interfaces
+        // connection string syntax: <protocol>:<sub-protocol>:<data-source details>
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=false", "root", "477905");
+             Statement statement = connection.createStatement();) {
+            if (userBookmark.getBookmark() instanceof Book) {
+                saveUserBook(userBookmark, statement);
+            } else if (userBookmark.getBookmark() instanceof Movie) {
+                saveUserMovie(userBookmark, statement);
+            } else {
+                saveUserWebLink(userBookmark, statement);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    private void saveUserWebLink(UserBookmark userBookmark, Statement statement) throws SQLException {
+        String query = "insert into User_WebLink (user_id, weblink_id) values (" +
+                userBookmark.getUser().getId() + ", " + userBookmark.getBookmark().getId() + ")";
+        // similar to executeUpdate in DataStore but this is for Updates and that for SELECT
+        statement.executeUpdate(query);
+    }
+
+    private void saveUserMovie(UserBookmark userBookmark, Statement statement) throws SQLException {
+        String query = "insert into User_Book (user_id, book_id) values (" +
+                userBookmark.getUser().getId() + ", " + userBookmark.getBookmark().getId() + ")";
+        // similar to executeUpdate in DataStore but this is for Updates and that for SELECT
+        statement.executeUpdate(query);
+    }
+
+    private void saveUserBook(UserBookmark userBookmark, Statement statement) throws SQLException {
+        String query = "insert into User_Movie (user_id, movie_id) values (" +
+                userBookmark.getUser().getId() + ", " + userBookmark.getBookmark().getId() + ")";
+        // similar to executeUpdate in DataStore but this is for Updates and that for SELECT
+        statement.executeUpdate(query);
     }
 
     // in real application SQL or hibernate queries are used

@@ -22,13 +22,6 @@ public class DataStore {
     private static List<UserBookmark> userBookmarks = new ArrayList<>();
 
     public static void loadData() {
-        /*
-        loadUsers();
-        loadWebLinks(); //index 0
-        loadMovies(); //index 1
-        loadBooks(); //index 2
-         */
-
         // loading JDBC driver
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -99,7 +92,7 @@ public class DataStore {
             MovieGenreType genre = MovieGenreType.values()[genre_id];
             double imdbRating = rs.getDouble("imdb_rating");
 
-            bookmarkList.add(BookmarkManager.getInstance().createMovie(id, title, Integer.parseInt(""), cast, directors, genre, imdbRating));
+            bookmarkList.add(BookmarkManager.getInstance().createMovie(id, title, releaseYear, cast, directors, genre, imdbRating));
         }
         bookmarks.add(bookmarkList);
     }
@@ -118,7 +111,7 @@ public class DataStore {
             String publisher = rs.getString("name");
             String[] authors = rs.getString("authors").split(",");
             int genre_id = rs.getInt("book_genre_id");
-            BookGenreType genre = BookGenreType.values()[genre_id];
+            BookGenreType genre = BookGenreType.values()[genre_id - 1];
             double amazonRating = rs.getDouble("amazon_rating");
 
             Date createdDate = rs.getDate("created_date");

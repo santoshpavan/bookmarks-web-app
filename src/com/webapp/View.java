@@ -25,7 +25,6 @@ public class View {
                 if (user.getUserType().equals(UserType.EDITOR) || user.getUserType().equals(UserType.CHIEF_EDITOR)) {
                     if (bookmark.isKidFriendlyEligible() && bookmark.getKidFriendlyStatus().equals(KidFriendlyStatus.UNKNOWN)) {
                         KidFriendlyStatus kidFriendlyStatus = getKidFriendlyStatusDecision(bookmark);
-
                         if (!kidFriendlyStatus.equals(KidFriendlyStatus.UNKNOWN)) {
                             BookmarkController.getInstance().setKidFriendlyStatus(user, kidFriendlyStatus, bookmark);
                         }
@@ -51,8 +50,10 @@ public class View {
     }
 
     private static KidFriendlyStatus getKidFriendlyStatusDecision(Bookmark bookmark) {
-        return Math.random() < 0.4 ?
-                KidFriendlyStatus.APPROVED : (Math.random() >= 0.4 && Math.random() < 0.8) ?
+        // randomly Approving or Rejecting links
+        double random = Math.random();
+        return random < 0.4 ?
+                KidFriendlyStatus.APPROVED : (random >= 0.4 && random < 0.8) ?
                     KidFriendlyStatus.REJECTED : KidFriendlyStatus.UNKNOWN;
     }
 }

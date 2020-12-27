@@ -111,5 +111,8 @@ public class BookmarkManager {
         } else if (bookmark instanceof WebLink) {
             System.out.println(((WebLink) bookmark).getItemData());
         }
+
+        // updating DB with who's sharing
+        bookmarkDao.sharedByInfo(bookmark);
     }
 }

@@ -98,7 +98,25 @@ public class BookmarkDao {
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=false", "root", "477905");
              Statement statement = connection.createStatement();) {
 
-            String query = "update" + tableToUpdate + " set kid_friendly_status = " + kidFriendlyStatus + "kid_friendly_marked_by = " + user_id + " where id = " + bookmark.getId();
+            String query = "update " + tableToUpdate + " set kid_friendly_status = " + kidFriendlyStatus + ", kid_friendly_marked_by = " + user_id + " where id = " + bookmark.getId();
+            System.out.println("query (updateKidFriendlyStatus): " + query);
+            statement.executeUpdate(query);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+    }
+
+    public void sharedByInfo(Bookmark bookmark) {
+        long user_id = bookmark.getSharedBy().getId();
+        String tableToUpdate = "Book";
+        if (bookmark instanceof WebLink) {
+            tableToUpdate = "WebLink";
+        }
+
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=false", "root", "477905");
+             Statement statement = connection.createStatement();) {
+
+            String query = "update " + tableToUpdate + " set shared_by = " + user_id + ", kid_friendly_marked_by = " + user_id + " where id = " + bookmark.getId();
             System.out.println("query (updateKidFriendlyStatus): " + query);
             statement.executeUpdate(query);
         } catch (SQLException throwables) {

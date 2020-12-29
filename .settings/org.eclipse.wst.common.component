@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="bookmarks-web-app">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <property name="context-root" value="bookmarks-web-app"/>
+        <property name="java-output-path" value="/bookmarks-web-app/out/production/bookmarks-web-app"/>
+    </wb-module>
+</project-modules>

@@ -1,14 +1,18 @@
 package com.webapp.dao;
 
 import com.webapp.DataStore;
+import com.webapp.constants.BookGenreType;
 import com.webapp.entities.*;
+import com.webapp.managers.BookmarkManager;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Collection;
 
 // directly deals with data. Usually has SQL
 public class BookmarkDao {
@@ -123,4 +127,53 @@ public class BookmarkDao {
             throwables.printStackTrace();
         }
     }
+
+	public static Collection<Bookmark> getBooks(boolean isBookmarked, long userId) {
+		Collection<Bookmark> result = new ArrayList<>();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/jid_thrillio?useSSL=false", "root", "root");
+				Statement stmt = conn.createStatement();) {			
+			
+			String query = "";
+			if (!isBookmarked) {
+				query = "Select b.id, title, image_url, publication_year, GROUP_CONCAT(a.name SEPARATOR ',') AS authors, book_genre_id, " +
+									"amazon_rating from Book b, Author a, Book_Author ba where b.id = ba.book_id and ba.author_id = a.id and " + 
+									"b.id NOT IN (select ub.book_id from User u, User_Book ub where u.id = " + userId +
+									" and u.id = ub.user_id) group by b.id";				
+			} /*else {
+				query = "Select b.id, title, image_url, publication_year, GROUP_CONCAT(a.name SEPARATOR ',') AS authors, book_genre_id, " +
+						"amazon_rating from Book b, Author a, Book_Author ba where b.id = ba.book_id and ba.author_id = a.id and " + 
+						"b.id IN (select ub.book_id from User u, User_Book ub where u.id = " + userId +
+						" and u.id = ub.user_id) group by b.id";
+			}*/
+			
+			ResultSet rs = stmt.executeQuery(query);				
+			
+	    	while (rs.next()) {
+	    		long id = rs.getLong("id");
+				String title = rs.getString("title");
+				String imageUrl = rs.getString("image_url");
+				int publicationYear = rs.getInt("publication_year");
+				//String publisher = rs.getString("name");		
+				String[] authors = rs.getString("authors").split(",");			
+				int genre_id = rs.getInt("book_genre_id");
+				BookGenreType genre = BookGenreType.values()[genre_id];
+				double amazonRating = rs.getDouble("amazon_rating");
+				
+				System.out.println("id: " + id + ", title: " + title + ", publication year: " + publicationYear + ", authors: " + String.join(", ", authors) + ", genre: " + genre + ", amazonRating: " + amazonRating);
+	    		
+	    		Bookmark bookmark = BookmarkManager.getInstance().createBook(id, title, imageUrl, publicationYear, null, authors, genre, amazonRating);
+	    		result.add(bookmark); 
+	    	}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
 }

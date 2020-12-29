@@ -10,6 +10,7 @@ import com.webapp.util.IOUtil;
 
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
+import java.util.Collection;
 import java.util.List;
 
 // Singleton pattern
@@ -40,11 +41,12 @@ public class BookmarkManager {
         return movie;
     }
 
-    public Book createBook(long id, String title, int publicationYear, String publisher,
+    public Book createBook(long id, String title, String imageUrl, int publicationYear, String publisher,
                            String[] authors, BookGenreType genre, double amazonRating) {
         Book book = new Book();
         book.setId(id);
         book.setTitle(title);
+        book.setImageUrl(imageUrl);
         book.setPublicationYear(publicationYear);
         book.setPublisher(publisher);
         book.setAuthors(authors);
@@ -115,4 +117,9 @@ public class BookmarkManager {
         // updating DB with who's sharing
         bookmarkDao.sharedByInfo(bookmark);
     }
+
+	public Collection<Bookmark> getBooks(boolean isBookmarked, long id) {
+		// TODO Auto-generated method stub
+		return BookmarkDao.getBooks(isBookmarked, id);
+	}
 }

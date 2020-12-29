@@ -6,15 +6,17 @@ import com.webapp.entities.User;
 import com.webapp.managers.BookmarkManager;
 
 // Singleton
-public class BookmarkController {
-    private static BookmarkController bookmarkControllerInstance = new BookmarkController();
-
+public class BookmarkController extends HttpServlet{
+    /*
+    Commenting out because Servlet implements it as a singleton
+	private static BookmarkController bookmarkControllerInstance = new BookmarkController();
+    
     private BookmarkController() {}
-
+	
     public static BookmarkController getInstance() {
         return bookmarkControllerInstance;
     }
-
+	*/
     public void saveUserBookmark(User user, Bookmark bookmark) {
         BookmarkManager.getInstance().saveUserBookMark(user, bookmark);
     }

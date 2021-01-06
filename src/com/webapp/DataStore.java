@@ -98,7 +98,7 @@ public class DataStore {
     }
 
     private static void loadBooks(Statement statement) throws SQLException {
-        String query = "Select b.id, title, imageUrl, publication_year, p.name, GROUP_CONCAT(a.name SEPARATOR ',') AS authors, book_genre_id, amazon_rating, created_date"
+        String query = "Select b.id, title, image_url, publication_year, p.name, GROUP_CONCAT(a.name SEPARATOR ',') AS authors, book_genre_id, amazon_rating, created_date"
                 + " from Book b, Publisher p, Author a, Book_Author ba "
                 + "where b.publisher_id = p.id and b.id = ba.book_id and ba.author_id = a.id group by b.id";
         ResultSet rs = statement.executeQuery(query);
@@ -107,7 +107,7 @@ public class DataStore {
         while (rs.next()) {
             long id = rs.getLong("id");
             String title = rs.getString("title");
-            String imageUrl = rs.getString("imageUrl");
+            String imageUrl = rs.getString("image_url");
             int publicationYear = rs.getInt("publication_year");
             String publisher = rs.getString("name");
             String[] authors = rs.getString("authors").split(",");

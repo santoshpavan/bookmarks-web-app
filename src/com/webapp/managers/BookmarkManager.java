@@ -105,4 +105,9 @@ public class BookmarkManager {
 		// TODO Auto-generated method stub
 		return BookmarkDao.getBooks(isBookmarked, id);
 	}
+
+	public Bookmark getBook(long bid) {
+		// TODO Auto-generated method stub
+		return BookmarkDao.getBook(bid);
+	}
 }

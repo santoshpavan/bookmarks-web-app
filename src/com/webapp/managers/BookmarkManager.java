@@ -74,24 +74,7 @@ public class BookmarkManager {
         UserBookmark userBookmark = new UserBookmark();
         userBookmark.setUser(user);
         userBookmark.setBookmark(bookmark);
-        /*
-        if (bookmark instanceof WebLink) {
-            try {
-                String url = ((WebLink)bookmark).getUrl();
-                if (!url.endsWith(".pdf")) {
-                    String webpage = HttpConnect.download(((WebLink)bookmark).getUrl());
-                    if (webpage != null) {//when the status is not >=200 and <300
-                        IOUtil.write(webpage, bookmark.getId());
-                    }
-                }
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            }
-        }
-        */
-
+        
         bookmarkDao.saveUserBookmark(userBookmark);
     }
 

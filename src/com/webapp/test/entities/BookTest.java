@@ -15,12 +15,12 @@ class BookTest {
         Book book;
 
         // test 1
-        book = BookmarkManager.getInstance().createBook(4000, "Walden",1854, "Wilder Publications", new String[]{"Henry David Thoreau"}, BookGenreType.PHILOSOPHY, 4.3);
+        book = BookmarkManager.getInstance().createBook(4000, "Walden", "test-url", 1854, "Wilder Publications", new String[]{"Henry David Thoreau"}, BookGenreType.PHILOSOPHY, 4.3);
         isKidFriendlyEligible = book.isKidFriendlyEligible();
         assertFalse(isKidFriendlyEligible, "A Philosophy book must return isKidFriendlyEligible() is False");
 
         // test 2
-        book = BookmarkManager.getInstance().createBook(4000, "Walden",1854, "Wilder Publications", new String[]{"Henry David Thoreau"}, BookGenreType.SELF_HELP, 4.3);
+        book = BookmarkManager.getInstance().createBook(4000, "Walden", "test-url", 1854, "Wilder Publications", new String[]{"Henry David Thoreau"}, BookGenreType.SELF_HELP, 4.3);
         isKidFriendlyEligible = book.isKidFriendlyEligible();
         assertFalse(isKidFriendlyEligible, "A Self-Help book must return isKidFriendlyEligible() is False");
     }

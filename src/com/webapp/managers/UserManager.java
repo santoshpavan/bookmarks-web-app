@@ -41,6 +41,10 @@ public class UserManager {
         return user;
     }
 
+    public List<User> getUsers() {
+        return userDao.getUsers();
+    }
+    
 	public User getUser(long userId) {
 		// TODO Auto-generated method stub
 		return userDao.getUser(userId);

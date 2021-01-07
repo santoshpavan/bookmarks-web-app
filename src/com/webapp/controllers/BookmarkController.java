@@ -36,32 +36,42 @@ public class BookmarkController extends HttpServlet{
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = null;
-		System.out.println("Servlet path: " + request.getServletPath());
+		// System.out.println("Servlet path: " + request.getServletPath());
 		
-		//if the request is coming from this path
-		if (request.getServletPath().contains("save")) {
-			// it's save
-			dispatcher = request.getRequestDispatcher("/mybooks.jsp");
-			String bid = request.getParameter("bid");
+		//checking if session is till valid
+		if (request.getSession().getAttribute("userId") != null) {
+			// getAttribute -> Object and getParameter -> string
+			long userId = (long) request.getSession().getAttribute("userId");
 			
-			User user = UserManager.getInstance().getUser(5);
-			Bookmark bookmark  = BookmarkManager.getInstance().getBook(Long.parseLong(bid));
-			BookmarkManager.getInstance().saveUserBookMark(user, bookmark);
-			
-			Collection<Bookmark> list = BookmarkManager.getInstance().getBooks(true, 5);
-			request.setAttribute("books", list);
-		}
-		else if (request.getServletPath().contains("mybooks")) {
-			// my books
-			dispatcher = request.getRequestDispatcher("/mybooks.jsp");
-			Collection<Bookmark> list = BookmarkManager.getInstance().getBooks(true, 5);
-			request.setAttribute("books", list);
-			
+			//if the request is coming from this path
+			if (request.getServletPath().contains("save")) {
+				// it's save
+				dispatcher = request.getRequestDispatcher("/mybooks.jsp");
+				String bid = request.getParameter("bid");
+				
+				User user = UserManager.getInstance().getUser(userId);
+				Bookmark bookmark  = BookmarkManager.getInstance().getBook(Long.parseLong(bid));
+				BookmarkManager.getInstance().saveUserBookMark(user, bookmark);
+				
+				Collection<Bookmark> list = BookmarkManager.getInstance().getBooks(true, userId);
+				request.setAttribute("books", list);
+			}
+			else if (request.getServletPath().contains("mybooks")) {
+				// my books
+				dispatcher = request.getRequestDispatcher("/mybooks.jsp");
+				Collection<Bookmark> list = BookmarkManager.getInstance().getBooks(true, userId);
+				request.setAttribute("books", list);
+				
+			}
+			else {
+				dispatcher = request.getRequestDispatcher("/browse.jsp");
+				Collection<Bookmark> list = BookmarkManager.getInstance().getBooks(false, userId);
+				request.setAttribute("books", list);
+			}
 		}
 		else {
-			dispatcher = request.getRequestDispatcher("/browse.jsp");
-			Collection<Bookmark> list = BookmarkManager.getInstance().getBooks(false, 5);
-			request.setAttribute("books", list);
+			//session has expired; redirect to login page
+			dispatcher = request.getRequestDispatcher("/login.jsp");
 		}
 				
 		//forwarding to view
@@ -79,4 +89,12 @@ public class BookmarkController extends HttpServlet{
     public void share(User user, Bookmark bookmark) {
         BookmarkManager.getInstance().share(user, bookmark);
     }
+    
+    /**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doGet(request, response);
+	}
 }

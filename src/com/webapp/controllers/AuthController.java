@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.webapp.managers.UserManager;
 
@@ -35,6 +36,10 @@ public class AuthController extends HttpServlet {
 			
 			long userId = UserManager.getInstance().authenticate(email, password);
 			if (userId != -1) {
+				//session object is associated with a session-id which can be used each time to get the userId that we save
+				HttpSession session = request.getSession();
+				session.setAttribute("userId",userId);
+				
 				//forwarding to servlet, not jsp, hence no need for "/" first
 				request.getRequestDispatcher("bookmark/mybooks").forward(request, response);
 			}
@@ -44,6 +49,8 @@ public class AuthController extends HttpServlet {
 		}
 		else {
 			//logout
+			//the below doesn't allow the user to just use "back" button
+			request.getSession().invalidate();
 			request.getRequestDispatcher("/login.jsp").forward(request, response);
 		}
 	}

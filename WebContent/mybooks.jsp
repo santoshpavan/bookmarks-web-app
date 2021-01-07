@@ -13,6 +13,7 @@
 		<div style="height:25px;background: #DB5227;font-family: Arial;color: white;">
 			<b>
 			<a href="<%=request.getContextPath()%>/bookmark" style="font-size:16px;color:white;margin-left:1150px;text-decoration:none;">Browse</a>
+			<a href="<%=request.getContextPath()%>/auth/logout" style="font-size:16px;color:white;margin-left:10px;text-decoration:none;">Logout</a>
 			</b>
 		</div> 
 	</div>

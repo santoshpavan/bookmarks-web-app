@@ -4,6 +4,7 @@ import com.webapp.constants.GenderType;
 import com.webapp.constants.UserType;
 import com.webapp.dao.UserDao;
 import com.webapp.entities.User;
+import com.webapp.util.StringUtil;
 
 import java.util.List;
 
@@ -48,5 +49,10 @@ public class UserManager {
 	public User getUser(long userId) {
 		// TODO Auto-generated method stub
 		return userDao.getUser(userId);
+	}
+
+	public long authenticate(String email, String password) {
+		// passing custom encoded password (ref: com.webapp.util.StringUtil) the function
+		return userDao.authenticate(email, StringUtil.encodePassword(password));
 	}
 }

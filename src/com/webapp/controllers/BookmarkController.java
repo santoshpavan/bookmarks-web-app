@@ -18,7 +18,6 @@ import com.webapp.managers.UserManager;
 
 // the URLs
 @WebServlet(urlPatterns= {"/bookmark", "/bookmark/save", "/bookmark/mybooks"})
-
 // Singleton
 public class BookmarkController extends HttpServlet{
     /*
